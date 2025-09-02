@@ -1,7 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: mlflow/mlflow
+  registry: docker.io
+  repository: bitnami/mlflow
   tag: 3.3.2
   pullPolicy: IfNotPresent
 
@@ -9,4 +10,34 @@ service:
   type: ClusterIP
   port: 5000
 
-resources: {}
+ingress:
+  enabled: false
+  hostname: mlflow.example.com
+  annotations: {}
+  tls: []
+
+persistence:
+  enabled: true
+  storageClass: standard   # EBS CSI StorageClass
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi
+
+env:
+  BACKEND_STORE_URI: sqlite:///mlflow.db
+  ARTIFACT_ROOT: /bitnami/mlflow/artifacts
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+metrics:
+  enabled: false
