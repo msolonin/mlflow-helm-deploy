@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: cr.flyte.org/flyteorg/mlflow
+  repository: ghcr.io/mlflow/mlflow
   tag: 2.9.2
   pullPolicy: IfNotPresent
 
