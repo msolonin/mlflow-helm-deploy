@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: mlflow/mlflow
-  tag: latest
+  tag: 2.9.2
   pullPolicy: IfNotPresent
 
 service:
